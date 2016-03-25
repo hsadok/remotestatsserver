@@ -1,0 +1,13 @@
+
+%link{:type => "text/css", :rel => "stylesheet", :href => "/css/statistics.css"}
+
+%h1 All Machines
+
+- @plots.each do |plot|
+  .plot{ :data => {'id' => plot.id, 'title' => plot.title, 'yaxis' => plot.description, 'interval' => plot.interval} }
+
+%script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js")
+%script(src="/js/exporting.js")
+%script(src="/js/highcharts.js")
+%script(src="/js/plot_style.js")
+%script(src="/js/plot.js")
