@@ -1,0 +1,15 @@
+body {
+  background-color: #525253;
+}
+
+h1 {
+  font-family: 'Unica One', sans-serif;
+  color: #E0E0E3;
+  font-size: x-large;
+}
+
+.plot {
+  min-width: 310px;
+  height: 300px;
+  margin: 0 auto;
+}
