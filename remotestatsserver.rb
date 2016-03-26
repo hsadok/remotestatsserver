@@ -8,7 +8,7 @@ NUMBER_OF_SAMPLES = 20
 
 class Plot
   attr_accessor :id, :hostname, :description, :interval
-  attr_reader :title, :measures
+  attr_reader :title, :measures, :last_update
 
   def initialize(id, hostname, description, interval, measures=[])
     @id = id
@@ -17,16 +17,17 @@ class Plot
     @interval = interval
     @measures = measures
     @title = description + ' for ' + hostname
+    @last_update = Time.now
   end
 
   def add_measures(measures)
+    @last_update = Time.now
     measures.each { |m| [[m[0].to_i],[m[1].to_s]] }
     @measures += measures
     @measures.uniq!
     if @measures.length > NUMBER_OF_SAMPLES
       @measures = @measures[-NUMBER_OF_SAMPLES..-1]
     end
-    puts description, @measures
   end
 
   def get_new_measures(last)
@@ -38,18 +39,19 @@ end
 plots = []
 set :haml, :format => :html5
 
+def cleanup
+  plots.delete_if {|plot| (Time.now - plot.last_update) > plot.interval * NUMBER_OF_SAMPLES}
+end
 
 get '/' do
+  cleanup
   @plots = plots
   haml :index
 end
 
 get '/ajax' do
-  puts 'params: ', params
   id = params['id']
   last = params['last'] || 0
-  puts id
-  puts last
   plot = plots.find {|plot| plot.id == id}
   json plot.get_new_measures(last)
 end
