@@ -53,16 +53,6 @@ $(function () {
                                 
                             }, 1000);
                         }
-                        //load: function () {
-                        //
-                        //    // set up the updating of the chart
-                        //    var series = this.series[0];
-                        //    setInterval(function () {
-                        //        var x = (new Date()).getTime(), // current time
-                        //            y = Math.random();
-                        //        series.addPoint([x, y], true, true);
-                        //    }, interval);
-                        //}
                     }
                 },
                 title: {
@@ -98,20 +88,6 @@ $(function () {
                 series: [{
                     name: yaxis,
                     data: []
-                    //data: (function () {
-                    //   // generate an array of random data
-                    //   var data = [],
-                    //       time = 1458886113600,
-                    //       i;
-                    //
-                    //   for (i = -19; i <= 0; i += 1) {
-                    //       data.push({
-                    //           x: time + i * 1000,
-                    //           y: Math.random()
-                    //       });
-                    //   }
-                    //   return data;
-                    //}())
                 }],
                 last_point_time: last_point_time,
                 id: id
