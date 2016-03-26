@@ -39,12 +39,12 @@ end
 plots = []
 set :haml, :format => :html5
 
-def cleanup
+def cleanup(plots)
   plots.delete_if {|plot| (Time.now - plot.last_update) > plot.interval * NUMBER_OF_SAMPLES}
 end
 
 get '/' do
-  cleanup
+  cleanup plots
   @plots = plots
   haml :index
 end
