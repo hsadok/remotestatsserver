@@ -28,11 +28,12 @@ class Plot
     if @measures.length > NUMBER_OF_SAMPLES
       @measures = @measures[-NUMBER_OF_SAMPLES..-1]
     end
+    @measures.sort! {|x,y| x[0] <=> y[0]}
   end
 
   def get_new_measures(last)
     last = last.to_i
-    @measures.select {|i| i[0] > last}
+    (@measures.select {|i| i[0] > last}).sort {|x,y| x[0] <=> y[0]}
   end
 end
 
