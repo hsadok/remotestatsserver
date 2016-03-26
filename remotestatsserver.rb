@@ -40,7 +40,6 @@ set :haml, :format => :html5
 
 
 get '/' do
-  #@plots = [Plot.new('computer', 'CPU(%)', 5000, [[1458873433, 20],[1458873438, 38]])]
   @plots = plots
   haml :index
 end
